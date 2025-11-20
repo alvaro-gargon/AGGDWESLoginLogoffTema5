@@ -12,6 +12,39 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
             align-items: center;
             background-color: beige;
         }
+        .botonIcono{
+            top: 5px;
+            position: absolute;
+            right: 10%;
+        }
+        #inicioSesion{
+            position: relative;
+            left: 40%;
+            width: 50%;
+        }
+        .botonGenerico{
+            position: relative;
+            left: 1%;
+            color: white;
+            width: 6rem;height: 2rem;
+            background-color: lightcoral;
+            border: 2px solid black;
+            border-radius: 5px;
+        }
+        h1{
+            position: absolute;
+            left: 45%;
+        }
+        h2{
+            position: relative;
+            left: -40%;
+        }
+        img{
+            position: relative;
+            width: 50px;height: 50px;
+            background-color: beige;
+            padding: 0px
+        }
         p{
             padding: 10px
         }
@@ -20,6 +53,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
             background-color: #403F6F;
             color: beige;
             text-align: center;
+            margin-bottom: 10px; 
         }
         footer{
             background-color: #403F6F;
