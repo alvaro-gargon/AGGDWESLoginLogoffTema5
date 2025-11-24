@@ -30,6 +30,16 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
             background-color: lightcoral;
             border: 2px solid black;
             border-radius: 5px;
+            left: 40%;
+        }
+        .botonGenericoFormulario{
+            position: relative;
+            left: 1%;
+            color: white;
+            width: 7rem;height: 2rem;
+            background-color: lightcoral;
+            border: 2px solid black;
+            border-radius: 5px;
         }
         h1{
             position: absolute;
@@ -38,6 +48,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
         h2{
             position: relative;
             left: -40%;
+        }
+        h3{
+            margin-top: 20px;
+            position: relative;
+            width: 1000px;
+            left: 40%;
         }
         img{
             position: relative;
@@ -56,6 +72,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
             margin-bottom: 10px; 
         }
         footer{
+            position: absolute;
             background-color: #403F6F;
             color: beige;
             text-align: center;
@@ -83,4 +100,91 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
         a{
             color: lightcoral;
             text-decoration: none;
+        }
+        
+        .principal {
+            position: relative;
+            left: 10%;
+            margin-bottom: 40px;
+            width: 70%;
+            border-collapse: separate;
+            border-spacing: 0;
+            text-align: left;
+            margin-bottom: 30px;
+        }
+
+        .principal td {
+            padding: 10px;
+            border: 1px solid #3a3a3a;
+            vertical-align: middle;
+            text-align: left;
+            
+        }
+        .principal th {
+            padding: 10px;
+            border: 2px solid #3a3a3a;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            vertical-align: middle;
+            text-align: left;
+            background-color: lightblue;
+        }
+        .principal th:first-child{
+            border: 2px solid #3a3a3a;
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+            background-color: lightblue;
+        }   
+        .principal td:first-child{
+            border: 2px solid #3a3a3a;
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+            background-color: lightblue;
+        }
+        
+        .secundario {
+            width: 70%;
+            border-collapse: separate;
+            border-spacing: 0;
+            text-align: left;
+            margin-bottom: 30px;
+        }
+        
+        .secundario td {
+            padding: 10px;
+            border: 1px solid #3a3a3a;
+            vertical-align: middle;
+            text-align: left;
+        }
+        .secundario tr:not(:first-child) td:first-child{
+            background-color: lightblue;
+            border: 2px solid #3a3a3a;
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+            width: 40%; 
+        }
+        
+        .secundario tr:first-child td:nth-child(2), tr:first-child td:nth-child(3){
+            border: 2px solid #3a3a3a;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            background-color: lightblue;    
+        }
+        .secundario td:last-child{
+            border: 1px solid #3a3a3a;
+            border-right: 2px solid #3a3a3a;
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+        
+        .secundario td:first-child{
+            padding: 10px;
+            border: 0px;
+            vertical-align: middle;
+            text-align: center;
+        }
+        
+        table img {
+            width: 40px;
+            height: 40px;
         }

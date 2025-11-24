@@ -31,18 +31,17 @@
     </header>
     <form method="post" id="inicioSesion">
         <p>
-          <label>1. ¿Cuál es tu nombre?</label><br>
-          <input class="obligatorio" type="text" name="comida"  
-                 placeholder="Jose Manuel">
+          <label>Introduce nombre de usuario</label><br>
+          <input class="obligatorio" type="text" name="usuario">
         </p>
 
         <p>
-          <label>2. ¿Cuando naciste?</label><br>
-          <input type="date" name="fecha">
+          <label>Introduce contraseña</label><br>
+          <input class="obligatorio" type="text" name="contraseña">
         </p>
-        <button class="botonGenerico" type="submit" name="ENTRAR">ENTRAR</button>
-        <button class="botonGenerico" name="CANCELAR">CANCELAR</button>
-        <p>¿No tienes cuenta todavía? Haz click en: <button class="botonGenerico" name="REGISTRARSE">REGISTRARSE</button></p>
+        <button class="botonGenericoFormulario" type="submit" name="ENTRAR">ENTRAR</button>
+        <button class="botonGenericoFormulario" name="CANCELAR">CANCELAR</button>
+        <p>¿No tienes cuenta todavía? Haz click en: <button class="botonGenericoFormulario" name="REGISTRARSE">REGISTRARSE</button></p>
     </form>
     <footer>
         <p><a href="https://alvarogargon.ieslossauces.es/">Álvaro García González</a></p>

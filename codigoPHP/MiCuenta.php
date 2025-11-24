@@ -22,7 +22,7 @@
 </head>
 <body>
     <header>
-        <h1>INICIO PRIVADO</h1>
+        <h1>MI CUENTA</h1>
         <h2>LOGIN LOGOFF TEMA 5</h2>
         <form method="post">
             <!--  <button class="botonIcono" name="LOGOFF"><img  id="iconoLog" src="../webroot/images/loginlogoff.png"></button>-->
@@ -30,26 +30,15 @@
         </form>
         
     </header>
-    <?php 
-        if($_COOKIE['idioma']=="ingles"){
-                echo "<h3>WELCOME TO YOUR PRIVATE AREA OF THE APP</h3>";
-        }else{
-            if($_COOKIE['idioma']=="italiano"){
-                echo "<h3>BENVENUTO NELLA TUA AREA PRIVATA DELL'APP</h3>";
-            } 
-            if($_COOKIE['idioma']=="español" || empty($_COOKIE['idioma'])){
-            echo "<h3>BIENVENIDO A LA ZONA PRIVADA DE TU APLICACION</h3>";
-            }
-        }
-    ?>
-    
+    <h3>MI CUENTA</h3>
     <form method="post">
-        <button class="botonGenerico" name="DETALLE">DETALLE</button>
+        <button class="botonGenerico" name="ACEPTAR">ACEPTAR</button>
+        <button class="botonGenerico" name="CANCELAR">CANCELAR</button>
     </form>
     <footer>
         <p><a href="https://alvarogargon.ieslossauces.es/">Álvaro García González</a></p>
         <a href="https://github.com/alvaro-gargon/AGGDWESLoginLogoffTema5"><i class="fa fa-github fa-2x"></i></a>
-        <p>Última actualización <time datetime="2025-11-20">20/11/2025</time></p>
+        <p>Última actualización <time datetime="2025-11-24">24/11/2025</time></p>
     </footer>
 </body>
 </html>

@@ -7,7 +7,7 @@
 
 
 //const DSN= 'mysql:host=192.168.1.134;dbname:DBAGGDWESProyectoTema4'; //variable para el entorno en casa
-    define($DSN, 'mysql:host=10.199.9.114;dbname:DBAGGDWESProyectoTema4');
+    define($DSN, 'mysql:host=10.199.9.114;dbname:DBAGGDWESProyectoLoginLogoffTema5');
     define($USERNAME, 'userAGGDWESProyectoTema4');
     define($PASSWORD, 'paso');
 
