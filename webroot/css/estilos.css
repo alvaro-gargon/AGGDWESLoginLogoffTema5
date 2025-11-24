@@ -72,12 +72,22 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
             margin-bottom: 10px; 
         }
         footer{
+            position: relative;
+            background-color: #403F6F;
+            color: beige;
+            text-align: center;
+            position: absolute;
+            bottom: 0%;
+            width: 100%;
+            height: 15%;
+        }
+        .footerPaginaGrande{
             position: absolute;
             background-color: #403F6F;
             color: beige;
             text-align: center;
             position: absolute;
-            bottom: 0px;
+            bottom: -1900px;
             width: 100%;
             height: 15%;
         }
