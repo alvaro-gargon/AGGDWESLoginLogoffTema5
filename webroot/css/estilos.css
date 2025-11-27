@@ -22,6 +22,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
             left: 40%;
             width: 50%;
         }
+        .obligatorio{
+            background-color: lightgoldenrodyellow;
+        }
         .botonGenerico{
             position: relative;
             left: 1%;
