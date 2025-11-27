@@ -2,6 +2,7 @@
     /* Nombre: Alvaro Garcia Gonzalez
      * Fecha: 20/11/2025
      * Uso:  */
+    session_start(); 
     //si le da al boton de vovler se va a la pagina del index
     if (isset($_REQUEST['CANCELAR'])) {
         header('Location: ../indexLoginLogoffTema5.php');
@@ -11,7 +12,7 @@
     if (isset($_REQUEST['REGISTRARSE'])) {
         header('Location: Registro.php');
     }
-
+      
     require_once '../core/231018libreriaValidacion.php';
     $entradaOK = true; //variable boolean para enviar el formulario
     //array donde recojo los mensajes de error de cada campo
@@ -75,20 +76,14 @@
             }else{
                 session_start();
                 if(!isset($_SESSION['usuarioDAWAGGLoginLogoffTema5'])){
-                    //recojo la conexion anterior
-                    $consultaConexionAnterior="select T01_FechaHoraUltimaConexion from T01_Usuario WHERE T01_CodUsuario = :usuario;";
-                    $conexionAnterior= $miDB->prepare($consultaConexionAnterior);
-                    $conexionAnterior->execute([
-                        ':usuario' => $_REQUEST['usuario']
-                    ]);
-                    //actualizamos tanto el numero de conexiones como la fecha de la ultima conexion
+                    
                     
                     //Se recogen estos datos de la sesión en un array $aDatosSession
                     $aDatosSesion = [
                         'usuario' => $usuarioBD['T01_CodUsuario'],
                         'descripcion' => $usuarioBD['T01_DescUsuario'],
                         'FechaHoraUltimaConexion' => $usuarioBD['T01_FechaHoraUltimaConexion'],
-                        'FechaHoraConexionAnterior' => $conexionAnterior,
+                        'FechaHoraConexionAnterior' => $conexionAnterior->fetchColumn(),
                         'numConexiones' => $usuarioBD['T01_NumConexiones']
                     ];
                     //y se guardan en un array en la sesión
@@ -100,6 +95,13 @@
                     header("Location: InicioPrivado.php");
                     exit;
                 }else{
+                    //recojo la conexion anterior
+                    $consultaConexionAnterior="select T01_FechaHoraUltimaConexion from T01_Usuario WHERE T01_CodUsuario = :usuario;";
+                    $conexionAnterior= $miDB->prepare($consultaConexionAnterior);
+                    $conexionAnterior->execute([
+                        ':usuario' => $_REQUEST['usuario']
+                    ]);
+                    //actualizamos tanto el numero de conexiones como la fecha de la ultima conexion
                     $updateUltimaConexion = <<<SQL
                                 UPDATE T01_Usuario SET
                                 T01_FechaHoraUltimaConexion = now(),
@@ -111,7 +113,17 @@
                     $consultaUpdateUltimaConexion->execute([
                         ':usuario' => $_REQUEST['usuario']
                     ]);
+                    //y se guardan en un array en la sesión 
+                    $aDatosSesion = [
+                        'usuario' => $usuarioBD['T01_CodUsuario'],
+                        'descripcion' => $usuarioBD['T01_DescUsuario'],
+                        'FechaHoraUltimaConexion' => $usuarioBD['T01_FechaHoraUltimaConexion'],
+                        'FechaHoraConexionAnterior' => $conexionAnterior,
+                        'numConexiones' => $usuarioBD['T01_NumConexiones']
+                    ];
+                    
                     header("Location: InicioPrivado.php");
+                    exit;
                 }
             }
             
