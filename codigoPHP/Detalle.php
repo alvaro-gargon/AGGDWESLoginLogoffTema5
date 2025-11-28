@@ -3,13 +3,19 @@
         * Fecha: 20/11/2025
         * Uso:  */ 
         //si le da al boton de vovler se va a la pagina del index
-       
+        session_start();
         if(isset($_REQUEST['ACEPTAR'])){
             header('Location: InicioPrivado.php');
         }
+        if (!isset($_SESSION["usuarioDAWAGGAppLoginLogoffTema5"])) {
+            header("location: login.php");
+            exit;
+        }
         
         if(isset($_REQUEST['LOGOFF'])){
+            session_destroy();
             header('Location: ../indexLoginLogoffTema5.php');
+            exit;
         }
 ?>
 

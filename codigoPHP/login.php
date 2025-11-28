@@ -51,7 +51,6 @@
         try {
             $miDB = new PDO(DNS, USERNAME, PASSWORD);
             $miDB->exec("use DBAGGDWESProyectoLoginLogoffTema5;");
-            $miDB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $sql = <<<SQL
                             SELECT T01_CodUsuario,
                             T01_Password,
@@ -68,74 +67,47 @@
                 ':usuario' => $_REQUEST['usuario'],
                 ':passwd' => $_REQUEST['usuario'] . $_REQUEST['contraseña']
             ]);
-
-            $usuarioBD = $consulta->fetch();
-            if (!$usuarioBD) {
-                //Si las credenciales no son correctas la entrada es false
-                $entradaOK = false;
-            }else{
-                session_start();
-                if(!isset($_SESSION['usuarioDAWAGGLoginLogoffTema5'])){
-                    
-                    
-                    //Se recogen estos datos de la sesión en un array $aDatosSession
-                    $aDatosSesion = [
-                        'usuario' => $usuarioBD['T01_CodUsuario'],
-                        'descripcion' => $usuarioBD['T01_DescUsuario'],
-                        'FechaHoraUltimaConexion' => $usuarioBD['T01_FechaHoraUltimaConexion'],
-                        'FechaHoraConexionAnterior' => $conexionAnterior->fetchColumn(),
-                        'numConexiones' => $usuarioBD['T01_NumConexiones']
-                    ];
-                    //y se guardan en un array en la sesión
-
-                    $_SESSION['usuarioDAWAGGLoginLogoffTema5'] = $aDatosSesion;
-                    //y  se abre inicio.php
-                    //header("Location: inicio.php");
-                    // Redirigir según el usuario
-                    header("Location: InicioPrivado.php");
-                    exit;
-                }else{
-                    //recojo la conexion anterior
-                    $consultaConexionAnterior="select T01_FechaHoraUltimaConexion from T01_Usuario WHERE T01_CodUsuario = :usuario;";
-                    $conexionAnterior= $miDB->prepare($consultaConexionAnterior);
-                    $conexionAnterior->execute([
-                        ':usuario' => $_REQUEST['usuario']
-                    ]);
-                    //actualizamos tanto el numero de conexiones como la fecha de la ultima conexion
-                    $updateUltimaConexion = <<<SQL
+            
+            //si el existe (o es valido), devolvera una fila
+            $usuarioBD = $consulta->fetchObject();
+            if ($usuarioBD) {
+                $fechaActual=new DateTime();
+                //iniciamos la sesion sino
+                
+                $_SESSION['usuarioDAWAGGAppLoginLogoffTema5'] = [
+                    'CodUsuario' => $usuarioBD->T01_CodUsuario,
+                    'Password' => $usuarioBD->T01_Password,
+                    'DescUsuario' => $usuarioBD->T01_DescUsuario,
+                    'FechaHoraUltimaConexionAnterior' => $usuarioBD->T01_FechaHoraUltimaConexion,
+                    'FechaHoraUltimaConexion' => $fechaActual,
+                    'NumConexiones' => $usuarioBD->T01_NumConexiones+1,
+                    'Perfil' => $usuarioBD->T01_Perfil
+                ];
+                //actualizamos la fecha actual
+                $consultaActualizacion = <<<SQL
                                 UPDATE T01_Usuario SET
                                 T01_FechaHoraUltimaConexion = now(),
                                 T01_NumConexiones = T01_NumConexiones + 1
                                 WHERE T01_CodUsuario = :usuario
                                 SQL;
-
-                    $consultaUpdateUltimaConexion = $miDB->prepare($updateUltimaConexion);
-                    $consultaUpdateUltimaConexion->execute([
-                        ':usuario' => $_REQUEST['usuario']
-                    ]);
-                    //y se guardan en un array en la sesión 
-                    $aDatosSesion = [
-                        'usuario' => $usuarioBD['T01_CodUsuario'],
-                        'descripcion' => $usuarioBD['T01_DescUsuario'],
-                        'FechaHoraUltimaConexion' => $usuarioBD['T01_FechaHoraUltimaConexion'],
-                        'FechaHoraConexionAnterior' => $conexionAnterior,
-                        'numConexiones' => $usuarioBD['T01_NumConexiones']
-                    ];
-                    
-                    header("Location: InicioPrivado.php");
-                    exit;
-                }
+                $consulta2 = $miDB->prepare($consultaActualizacion);
+                $consulta2->execute([':usuario' => $_REQUEST['usuario']]);
+                
+                //vamos al inicio privado
+                header('Location: InicioPrivado.php');
+                exit;
+            }else{
+                header('Location: login.php');
+                exit;
             }
             
-
         } catch (PDOException $exception) {
             echo("Error: " . $exception->getMessage());
             echo("Codigo error: " . $exception->getCode());
+        }finally{
+            unset($miDB);
         }
-        
-
-        unset($miDB);
-    } else {
+    }else {
     ?>
 
     <!DOCTYPE html>
@@ -160,7 +132,7 @@
 
                 <p>
                     <label>Introduce contraseña</label><br>
-                    <input class="obligatorio" type="text" name="contraseña">
+                    <input class="obligatorio" type="password" name="contraseña">
                 </p>
                 <button class="botonGenericoFormulario" type="submit" name="ENTRAR">ENTRAR</button>
                 <button class="botonGenericoFormulario" name="CANCELAR">CANCELAR</button>

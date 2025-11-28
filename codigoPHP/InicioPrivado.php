@@ -4,18 +4,20 @@
         * Uso:  */ 
         //si le da al boton de vovler se va a la pagina del index
         session_start();
-        /*
-        if (!isset($_SESSION["sesion"])) {
+        
+        if (!isset($_SESSION["usuarioDAWAGGAppLoginLogoffTema5"])) {
             header("location: ../indexLoginLogoffTema5.php");
             exit;
         }
-        */
+        
          
         if(isset($_REQUEST['DETALLE'])){
             header('Location: Detalle.php');
         }
         if(isset($_REQUEST['LOGOFF'])){
+            session_destroy();
             header('Location: ../indexLoginLogoffTema5.php');
+            exit;
         }
 ?>
 <!DOCTYPE html>
@@ -44,7 +46,7 @@
             if($_COOKIE['idioma']=="italiano"){
                 echo "<h3>BENVENUTO NELLA TUA AREA PRIVATA DELL'APP</h3>";
             } 
-            if($_COOKIE['idioma']=="español" || !isset($_COOKIE['idioma'])){
+            if($_COOKIE['idioma']=="español"){
             echo "<h3>BIENVENIDO A LA ZONA PRIVADA DE TU APLICACION</h3>";
             }
         }
