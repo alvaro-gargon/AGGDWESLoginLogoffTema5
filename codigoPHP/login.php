@@ -71,6 +71,7 @@
             //si el existe (o es valido), devolvera una fila
             $usuarioBD = $consulta->fetchObject();
             if ($usuarioBD) {
+                date_default_timezone_set("Europe/Madrid");
                 $fechaActual=new DateTime();
                 //iniciamos la sesion sino
                 

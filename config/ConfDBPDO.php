@@ -13,6 +13,7 @@
     define('DNS', 'mysql:host=10.199.11.252;dbname:DBAGGDWESProyectoLoginLogoffTema5');
     //define($DSN, 'mysql:host=10.199.9.114;dbname:DBAGGDWESProyectoLoginLogoffTema5');
     define('USERNAME', 'userAGGDWESProyectoLoginLogoffTema5');
-    define('PASSWORD', 'Paso,12345678910');//la contraseña es la de la base de datos de plesk
+    define('PASSWORD', 'paso');
+    //define('PASSWORD', 'Paso,12345678910');//la contraseña es la de la base de datos de plesk
 
 ?>

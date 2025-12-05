@@ -4,6 +4,12 @@
         * Uso:  */ 
         //si le da al boton de vovler se va a la pagina del index
         session_start();
+        if (!isset($_SESSION["usuarioDAWAGGAppLoginLogoffTema5"])) {
+            header("location: ../indexLoginLogoffTema5.php");
+            exit;
+        }else{
+            $_SESSION["usuarioDAWAGGAppLoginLogoffTema5"]=[''];
+        }
         if(isset($_REQUEST['ACEPTAR'])){
             header('Location: InicioPrivado.php');
         }
